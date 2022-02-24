@@ -9,14 +9,48 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+### 1.Création d'une matrice de valeurs
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+On créé une matrice 9*9 en intégrant une valeur unique pour le test de cet algorithme, ici la valeur 1.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+m<-matrix((1),9, 9)
+m
+ui<-fluidPage()
 ```
 
-Bannane
+
+### 2. On charge la bibliothèque Shiny qui nous permettra de réaliser l'interface et on y ajoute les difficultés
+```{r}
+library(shiny)
+library(shinyMatrix)
+if (interactive()) {
+  # UI
+  ui <- fluidPage(
+    selectInput('NumGrig',label = 'Difficulté', c("Facile", "Normal", "Difficile", "T'as le SUD au KU")),
+    actionButton("add", "Générer le SUDAUCUL !"),
+    conditionalPanel(condition = "input.add > 0",
+    uiOutput("grid")))
+  
+  # Server
+  server <- function(input, output, session) {
+    
+    # adding Matrix
+    observe({
+      if (!is.null(input$add)) {
+        m = reactive({matrix((1:9),ncol = 8 ,nrow =8)})
+        output$grid <- renderUI({
+         div(matrixInput(inputId = "newGrid", value = m()),)
+        })
+      }
+    })
+  }
+  shinyApp(ui, server)
+}
+```
+
+
+
+
+
+
