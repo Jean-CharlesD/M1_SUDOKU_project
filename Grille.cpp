@@ -12,10 +12,8 @@ void RandPermut(int *ent, int n) {
             ent[i]=e;}
     }
 
-int main(){
+void genGrille(){
     int grille[9][9];
-    int tmp = 1;
-
 
     //remplissage grille
     for(int i = 0; i < 9; i++){
@@ -25,8 +23,6 @@ int main(){
     }
 
     //première ligne
-    srand((unsigned int)time(0));
-    int val;
     for(int i = 0 ; i < 9 ; i++){
         grille[0][i]=i+1;
     }
@@ -58,9 +54,6 @@ int main(){
                 }
             }
         }
-
-
-
     //affchage grille
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
@@ -68,4 +61,11 @@ int main(){
         }
         cout<<endl;
     }
+}
+
+
+int main(){
+
+    genGrille();
+
 }
