@@ -14,26 +14,24 @@ knitr::opts_chunk$set(echo = TRUE)
 On créé une matrice 9*9 en intégrant une valeur unique pour le test de cet algorithme, ici la valeur 1.
 
 ```{r}
+library(shiny)
+library(shinyMatrix)
+
 m<-matrix((1),9, 9)
 m
 ui<-fluidPage()
-```
-```{Rcpp}
-// [[Rcpp::export]]
-int test(){
-  return 4;
-}
 ```
 
 ###Test du code Cpp
 
 ```{Rcpp}
-
+#include <Rcpp.h>
 #include <iostream>
 #include <string>
 #include <map> //pour les tableaux associatifs
 #include <ctime>
 
+using namespace Rcpp;
 using namespace std;
 
 void RandPermut(int *ent, int n) { 
@@ -44,7 +42,7 @@ void RandPermut(int *ent, int n) {
     }
 
 // [[Rcpp::export]]
-void GenGrille(){
+NumericVector GenGrille(){
     int grille[9][9];
 
     //remplissage grille
@@ -75,7 +73,7 @@ void GenGrille(){
         }
     }
 
-    //remplplissage des colones
+    //remplplissage du reste
     for(int i = 1; i < 9; i++){
             for(int j = 0; j < 9; j++){
                 if(i >= 3){
@@ -87,15 +85,29 @@ void GenGrille(){
                 }
             }
         }
-     //affchage grille
+    //affchage grille / création de la sortie
+    NumericVector out(81);
+    int cpt = 0;
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             cout<<grille[i][j]<<"  ";
+            out[cpt]=grille[j][i];
+            cpt++;
         }
         cout<<endl;
     }
+    
+    return out;
+    
 }
 ```
+
+```{r}
+raw <- GenGrille() #generation de la grille en format liste
+m <- matrix(raw, ncol = 9, nrow = 9)  #transformation de la liste en matice
+m
+```
+
 
 ### 2. On charge la bibliothèque Shiny qui nous permettra de réaliser l'interface et on y ajoute les difficultés
 ```{r}
@@ -115,7 +127,8 @@ if (interactive()) {
     # adding Matrix
     observe({
       if (!is.null(input$add)) {
-        m = reactive({matrix((1:9),ncol = 8 ,nrow =8)})
+        raw <- GenGrille()
+        m = reactive({matrix(raw, ncol = 9, nrow = 9)})
         output$grid <- renderUI({
          div(matrixInput(inputId = "newGrid", value = m()),)
         })
