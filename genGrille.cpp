@@ -15,7 +15,7 @@ void RandPermut(int *ent, int n) {
 }
 
 // [[Rcpp::export]]
-NumericVector GenGrille(bool complete, int dificulty){ //génération d'une grille compète
+NumericMatrix GenGrille(bool complete, int dificulty){ //génération d'une grille compète
   int grille[9][9];
   
   //remplissage grille
@@ -58,12 +58,12 @@ NumericVector GenGrille(bool complete, int dificulty){ //génération d'une gril
       }
     }
   }
+  
   //affchage grille / création de la sortie
   NumericVector out(81); //vecteur qui va contenir les valeurs de la grille
   int cpt = 0;
   for(int i = 0; i < 9; i++){
     for(int j = 0; j < 9; j++){
-      //cout<<grille[i][j]<<"  ";
       if(complete){
         out[cpt]=grille[j][i]; //remplisage du vecteur 
       }else{ //on met des valeurs à 0
@@ -81,7 +81,8 @@ NumericVector GenGrille(bool complete, int dificulty){ //génération d'une gril
       }
       cpt++;
     }
-    //cout<<endl;
   }
-  return out;
+  NumericMatrix out2(9,9,out.begin());
+  
+  return out2;
 }

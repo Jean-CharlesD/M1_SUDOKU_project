@@ -9,22 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###Compilation de GenGrille
-
-```{r}
-Rcpp::sourceCpp("C:/Users/camil/Desktop/ROUX/FAC/Master Bioinfo/S2/HAX815X R avancé/Projet/SUDAUCUL_project/genGrille.cpp")
-```
-
 ###Test de GenGrille
 
 ```{r}
-raw <- GenGrille(FALSE,1) #generation de la grille en format liste avec des 0 dans les cases vides
-for(i in 1:81){
-  if(raw[i] == 0){
-    raw[i] = " "
-  }
-}
-m <- matrix(raw, ncol = 9, nrow = 9)  #transformation de la liste en matice
+m<-genGrilleComplete()
 m
 ```
 
@@ -47,13 +35,7 @@ if (interactive()) {
     # adding Matrix
     observe({
       if (!is.null(input$add)) {
-        raw <- GenGrille(FALSE,1)
-        for(i in 1:81){ #remplace les 0 par des cases vides
-          if(raw[i] == 0){
-            raw[i] = ""
-          }
-        }
-        m = reactive({matrix(raw, ncol = 9, nrow = 9)})
+        m = reactive({genGrilleIncommplete(1)})
         output$grid <- renderUI({
          div(matrixInput(inputId = "newGrid", value = m()),)
         })
