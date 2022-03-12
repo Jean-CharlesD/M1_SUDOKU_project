@@ -1,4 +1,4 @@
-genGrilleIncommplete <- function(diff){
+genGrilleIncomplete <- function(diff){
 grille<-genGrilleComplete()
 
 for(j in 1:9){

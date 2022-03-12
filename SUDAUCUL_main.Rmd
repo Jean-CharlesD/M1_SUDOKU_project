@@ -9,6 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+###Insertion des fonctions directement dans le rmd ?
+
 ###Test de GenGrille
 
 ```{r}
@@ -21,13 +23,14 @@ m
 ```{r}
 library(shiny)
 library(shinyMatrix)
-if (interactive()) {
+if (minteractive()) {
   # UI
   ui <- fluidPage(
     selectInput('NumGrig',label = 'Difficulté', c("Facile", "Normal", "Difficile", "T'as le SUD au KU")),
     actionButton("add", "Générer le SUDAUCUL !"),
     conditionalPanel(condition = "input.add > 0",
-    uiOutput("grid")))
+    uiOutput("grid"))
+    )
   
   # Server
   server <- function(input, output, session) {
