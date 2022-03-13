@@ -1,6 +1,7 @@
-#'Coté server de l'app shiny sudoku
-#'@title server
-#'@description client de l'app shiny
+#'@title Coté server de l'app shiny sudoku
+#'@author Camille Carrette Jean Charles Delmas
+#'@param input flux d'entrée
+#'@param output flux de sortie
 #'@export
 
 library(shiny)

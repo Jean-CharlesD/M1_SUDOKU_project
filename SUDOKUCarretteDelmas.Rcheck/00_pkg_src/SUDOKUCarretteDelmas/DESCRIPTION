@@ -12,6 +12,6 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 NeedsCompilation: no
-Packaged: 2022-03-13 16:08:26 UTC; camil
+Packaged: 2022-03-13 16:26:40 UTC; camil
 Author: DELMAS Jean-Charles [aut, cre] (YOUR-ORCID-ID)
 Maintainer: DELMAS Jean-Charles <first.last@example.com>

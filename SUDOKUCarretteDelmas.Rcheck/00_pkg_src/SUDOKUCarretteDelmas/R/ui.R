@@ -1,6 +1,5 @@
-#'Coté client de l'app shiny sudoku
-#'@title client
-#'@description client de l'app shiny
+#'@title Coté client de l'app shiny sudoku
+#'@author Camille Carrette Jean Charles Delmas
 #'@export
 
 library(shiny)

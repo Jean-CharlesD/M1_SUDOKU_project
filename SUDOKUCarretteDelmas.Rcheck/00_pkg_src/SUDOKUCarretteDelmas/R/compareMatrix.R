@@ -1,4 +1,4 @@
-#'Comparaison de matrice 9x9
+#'@title Comparaison de matrice 9x9
 #'
 #'@param grille1 une grille 9x9
 #'@param grille2 une grille 9x9

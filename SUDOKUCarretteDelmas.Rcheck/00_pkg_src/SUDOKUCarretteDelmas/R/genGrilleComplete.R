@@ -1,4 +1,4 @@
-#'Génère une matrice 9x9
+#'@title Génère une matrice 9x9
 #'
 #'@return grille complete de sudoku
 #'@author Camille Carrette Jean Charles Delmas

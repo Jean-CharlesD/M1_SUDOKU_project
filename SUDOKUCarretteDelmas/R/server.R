@@ -1,9 +1,9 @@
-#'Coté server de l'app shiny sudoku
-#'@export
-
 library(shiny)
 library(shinyMatrix)
 
+#' Coté server de l'app shiny sudoku
+#'@author Camille Carrette Jean Charles Delmas
+#'@export
 
 server <- function(input,output){
 

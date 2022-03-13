@@ -1,4 +1,4 @@
-#'Génère une matrice incomplete
+#'@title Génère une matrice incomplete
 #'
 #'@param grille une grille complete pour sudoku
 #'@param diff entier indiquant la difficulté du sudoku
