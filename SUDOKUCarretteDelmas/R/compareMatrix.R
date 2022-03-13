@@ -4,7 +4,7 @@
 #'@param grille2 une grille 9x9
 #'@return booléen TRUE si grille1 est similaire à grille2
 #'@author Camille Carrette Jean Charles Delmas
-#'@exemples
+#'@examples
 #'m<-matrix(1:9,rows=9,cols=9)
 #'ComapreMatrix(m,m)
 #'@export
