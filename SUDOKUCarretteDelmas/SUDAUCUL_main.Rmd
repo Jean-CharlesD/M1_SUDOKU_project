@@ -89,6 +89,8 @@ CompareMatrix <- function(grille1,grille2){
 ### App shiny client :
 
 ```{r}
+library(shiny)
+library(shinyMatrix)
 ui <- fluidPage(
   
   #Tire

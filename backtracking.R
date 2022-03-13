@@ -1,2 +1,0 @@
-grille <- genGrilleIncommplete(1)
-
