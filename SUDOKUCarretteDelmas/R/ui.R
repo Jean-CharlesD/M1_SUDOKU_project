@@ -22,7 +22,7 @@ ui <- fluidPage(
   mainPanel(
     #Panel de la grille
     conditionalPanel(condition = "input.genGrille > 0", uiOutput(outputId = "displayGrid")),
-    #conditionalPanel(condition = "input.Choixgrille == 'incomplete'", actionButton('submit','soumission',grille='grille'))
-    textOutput("Resultat")
+    textOutput("Resultat"),
+    conditionalPanel(condition = "input.solve > 0", uiOutput(outputId = "displaySolve")),
   )
 )

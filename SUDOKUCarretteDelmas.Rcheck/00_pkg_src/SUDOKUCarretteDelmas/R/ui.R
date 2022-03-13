@@ -1,9 +1,10 @@
-#'@title Coté client de l'app shiny sudoku
-#'@author Camille Carrette Jean Charles Delmas
-#'@export
-
 library(shiny)
 library(shinyMatrix)
+
+#' Coté client de l'app shiny sudoku
+#'@author Camille Carrette Jean Charles Delmas
+#' @export
+
 
 ui <- fluidPage(
 
@@ -14,7 +15,7 @@ ui <- fluidPage(
   sidebarPanel(
     selectInput('level','Choix de la difficult?',c('facile','difficile')),
     selectInput('Choixgrille','Choix de la grille',c('complete','incomplete')),
-    actionButton('genGrille','G?n?ration du sudoku')
+    actionButton('genGrille','Génération du sudoku')
   ),
 
   #Grille
