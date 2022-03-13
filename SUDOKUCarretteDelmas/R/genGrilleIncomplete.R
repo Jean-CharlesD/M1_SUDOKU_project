@@ -3,7 +3,7 @@
 #'@param grille une grille complete pour sudoku
 #'@param diff entier indiquant la difficulté du sudoku
 #'@return la grille incomplete
-#'@author Camille Carrette
+#'@author Camille Carrette Jean Charles Delmas
 #'@exemples
 #'m<-matrix(1:9,rows=9,cols=9)
 #'genGrilleIncomplete(m,1)
