@@ -1,0 +1,9 @@
+* installing *source* package 'SUDOKUCarretteDelmas' ...
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+Error in library(shiny) : aucun package nommé 'shiny' n'est trouvé
+Erreur : impossible de charger le code R depuis le package 'SUDOKUCarretteDelmas'
+Exécution arrêtée
+ERROR: lazy loading failed for package 'SUDOKUCarretteDelmas'
+* removing 'C:/Users/camil/Documents/SUDAUCUL_project/SUDOKUCarretteDelmas.Rcheck/SUDOKUCarretteDelmas'
