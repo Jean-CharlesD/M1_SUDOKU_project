@@ -9,48 +9,163 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-###Insertion des fonctions directement dans le rmd ?
-
-###Test de GenGrille
+###Fonction de Génération de la grille complete
 
 ```{r}
-m<-genGrilleComplete()
-m
-```
+library(datasets)
 
-
-### 2. On charge la bibliothèque Shiny qui nous permettra de réaliser l'interface et on y ajoute les difficultés
-```{r}
-library(shiny)
-library(shinyMatrix)
-if (minteractive()) {
-  # UI
-  ui <- fluidPage(
-    selectInput('NumGrig',label = 'Difficulté', c("Facile", "Normal", "Difficile", "T'as le SUD au KU")),
-    actionButton("add", "Générer le SUDAUCUL !"),
-    conditionalPanel(condition = "input.add > 0",
-    uiOutput("grid"))
-    )
+genGrilleComplete<-function(){
+  grille<-matrix(0,ncol=9,nrow=9) #intialisation à 0
   
-  # Server
-  server <- function(input, output, session) {
-    
-    # adding Matrix
-    observe({
-      if (!is.null(input$add)) {
-        m = reactive({genGrilleIncommplete(1)})
-        output$grid <- renderUI({
-         div(matrixInput(inputId = "newGrid", value = m()),)
-        })
+  grille[1,]<-sample(9)#première ligne
+  
+  #remplissage des lignes 2 et 3
+  for(i in 2:9){
+    for(j in 1:9){
+      if(i<=3){
+        if(j>3){
+          grille[i,j]<-grille[i-1,j-3]
+        }else{
+          grille[i,j]<-grille[i-1,j+6]
+        }
       }
-    })
+    }
   }
-  shinyApp(ui, server)
+  #remplissage du reste
+  for(i in 2:9){
+    for(j in 1:9){
+      if(i > 3){
+        if(j == 1 || j == 4 || j == 7){
+          grille[i,j]<-grille[i-3,j+2]
+        }else{
+          grille[i,j]<-grille[i-3,j-1];
+        }
+      }
+    }
+  }
+  
+  
+  grille
 }
 ```
 
+###Fonction de Génération de la grille incomplete
 
+```{r}
+genGrilleIncomplete <- function(grille,diff){
 
+for(j in 1:9){
 
+  cases<-sample(3,diff)
+  cases<-c(cases,sample(4:6,diff))
+  cases<-c(cases,sample(7:9,diff))
+  cases
+  
+  for(i in cases){
+    grille[j,i]<-""
+  }
+}
 
+grille
+}
+```
 
+###Fonction de comparaison de matrice
+
+```{r}
+CompareMatrix <- function(grille1,grille2){
+  result <- TRUE
+  for(i in 1:9){
+    for( j in 1:9){
+      if(grille1[i,j] != grille2[i,j]){
+        result <- FALSE
+      }
+    }
+  }
+  result
+}
+```
+
+### App shiny client :
+
+```{r}
+ui <- fluidPage(
+  
+  #Tire
+  headerPanel('SUDOKU'),
+  
+  #Choix des options et bouton de génération des différentes grilles
+  sidebarPanel(
+    selectInput('level','Choix de la difficulté',c('facile','difficile')),
+    selectInput('Choixgrille','Choix de la grille',c('complete','incomplete')),
+    actionButton('genGrille','Génération du sudoku')
+  ),
+  
+  #Grille
+  mainPanel(
+    #Panel de la grille
+    conditionalPanel(condition = "input.genGrille > 0", uiOutput(outputId = "displayGrid")),
+    #conditionalPanel(condition = "input.Choixgrille == 'incomplete'", actionButton('submit','soumission',grille='grille'))
+    textOutput("Resultat")
+  )
+)
+```
+
+### App shiny serveur
+
+```{r}
+server <- function(input,output){
+  
+  grillecomplete <- genGrilleComplete()
+  
+  observeEvent(input$genGrille, {
+    if(input$Choixgrille == "complete"){
+      m = reactive({grillecomplete})
+      output$displayGrid <- renderUI({
+        div(matrixInput(inputId = "newGrid", value = m()),)
+      })
+      
+    }else{
+      if(input$level == 'facile'){
+        diff <- 1
+      }else{
+        diff <- 2
+      }
+      
+      grilleIncomplete <- genGrilleIncomplete(grillecomplete,diff)
+      m = reactive({grilleIncomplete})
+      output$displayGrid <- renderUI({
+        div(matrixInput(
+          inputId = "newGrid", 
+          value = m(),
+          class = numeric(),
+          rows = list(n = 9),
+          cols = list(n = 9)
+          ),
+        actionButton('submit','soumission',grille='grille')
+        )
+      })
+    }
+  })
+  
+  observeEvent(input$submit, {
+    print(grillecomplete)
+    print(input$newGrid)
+    victory <- CompareMatrix(grillecomplete,input$newGrid)
+    output$Resultat <- renderText({
+      if(victory){
+        "Bravo ! Vous avez réussi !"
+      }else{
+        "essaie encore"
+      }
+    })
+    })
+  
+}
+```
+
+###Lancement de l'application
+
+```{r}
+shinyApp(ui = ui, server=server)
+```
