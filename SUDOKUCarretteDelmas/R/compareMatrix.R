@@ -5,8 +5,8 @@
 #'@return booléen TRUE si grille1 est similaire à grille2
 #'@author Camille Carrette Jean Charles Delmas
 #'@examples
-#'m<-matrix(1:9,rows=9,cols=9)
-#'ComapreMatrix(m,m)
+#'m<-matrix(1:9,nrow=9,ncol=9)
+#'CompareMatrix(m,m)
 #'@export
 
 CompareMatrix <- function(grille1,grille2){

@@ -5,7 +5,7 @@ library(shinyMatrix)
 #'@author Camille Carrette Jean Charles Delmas
 #'@import shiny
 #'@import shinyMatrix
-#' @export
+#'@export
 
 
 ui <- fluidPage(

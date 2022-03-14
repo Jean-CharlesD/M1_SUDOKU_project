@@ -13,7 +13,7 @@ depedences : shiny, shinyMatrix
 Lancement de l'application sudoku
 
 ```{r}
-shinyApp(ui = ui, server=server)
+shiny::shinyApp(ui = ui, server=server)
 
 ```
 ***

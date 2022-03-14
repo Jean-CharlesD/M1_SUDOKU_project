@@ -5,9 +5,6 @@
 #'@return la grille incomplete
 #'@author Camille Carrette Jean Charles Delmas
 #'@examples
-#'m<-matrix(1:9,rows=9,cols=9)
-#'genGrilleIncomplete(m,1)
-#'
 #'m<-genGrilleComplete()
 #'genGrilleIncomplete(m,2)
 #'@export

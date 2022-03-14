@@ -18,8 +18,8 @@ booléen TRUE si grille1 est similaire à grille2
 Comparaison de matrice 9x9
 }
 \examples{
-m<-matrix(1:9,rows=9,cols=9)
-ComapreMatrix(m,m)
+m<-matrix(1:9,nrow=9,ncol=9)
+CompareMatrix(m,m)
 }
 \author{
 Camille Carrette Jean Charles Delmas
