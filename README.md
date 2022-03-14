@@ -5,11 +5,17 @@ ue: HAX815X R avancé
 depedences : shiny, shinyMatrix
 ---
 
+<<<<<<< HEAD
 # PROJET SUDOKU  
 
 ***
 
 ### Lancement de l'application sudoku
+=======
+#PROJET SUDOKU  
+
+###Lancement de l'application sudoku
+>>>>>>> ee941695644aa84e3527027339f22ade0ef1b889
 
 ```{r}
 
