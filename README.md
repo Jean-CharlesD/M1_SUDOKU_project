@@ -18,6 +18,15 @@ shiny::shinyApp(ui = ui, server=server)
 ```
 ***
 
+Backtracking
+
+```{r}
+backtracking()
+```
+!!!En développement, la version actuel ne fait que des print des ajouts nécessaire à la solution (elle n'est pas integrée à l'app pour le moment)
+
+***
+
 Fonction de Génération d'une grille complete (9x9, entier de 1 à 9, remplissage pour sudoku)
 
 ```{r}
