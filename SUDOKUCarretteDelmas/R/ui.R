@@ -3,6 +3,8 @@ library(shinyMatrix)
 
 #' Coté client de l'app shiny sudoku
 #'@author Camille Carrette Jean Charles Delmas
+#'@import shiny
+#'@import shinyMatrix
 #' @export
 
 
