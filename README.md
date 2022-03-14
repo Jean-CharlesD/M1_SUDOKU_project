@@ -29,7 +29,7 @@ genGrilleComplete()
 ***
 
 ### Fonction de Génération d'une grille incomplete 
-A partir d'une grille de genGrilleComplete() choix d'une dificulté (1 ou 2)
+### A partir d'une grille de genGrilleComplete() choix d'une dificulté (1 ou 2)
 
 ```{r}
 
