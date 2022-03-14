@@ -47,6 +47,3 @@ CompareMatrix(grille1,grille2)
 ***
 
 Projet effectué dans le cadre de l'ue HAX815X R avancé durant le master Bioinformatique.
-
-
-
