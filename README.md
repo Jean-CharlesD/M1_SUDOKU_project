@@ -1,11 +1,11 @@
-#PROJET SUDOKU  
-
 ---
 author: "Jean-Charles DELMAS & Camille CARRETTE"
 date: "14/03/2022"
 ue: HAX815X R avancé
 depedences : shiny, shinyMatrix
 ---
+
+#PROJET SUDOKU  
 
 ###Lancement de l'application sudoku
 
