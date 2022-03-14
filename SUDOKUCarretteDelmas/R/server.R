@@ -47,8 +47,6 @@ server <- function(input,output){
       })
       observeEvent(input$submit, {
         victory <- CompareMatrix(grillecomplete,input$newGrid) #booléen vrai si les input sont justes
-        print(grillecomplete)
-        print(grilleIncomplete)
         output$Resultat <- renderText({
           if(victory){
             "Bravo ! Vous avez réussi !"
